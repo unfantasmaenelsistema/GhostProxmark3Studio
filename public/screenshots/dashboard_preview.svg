@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" style="background:#070b13; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;">
+  <defs>
+    <linearGradient id="bgGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a1220" />
+      <stop offset="50%" stop-color="#070c14" />
+      <stop offset="100%" stop-color="#05080e" />
+    </linearGradient>
+    <linearGradient id="cyanGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="50%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0e1726" />
+      <stop offset="100%" stop-color="#090f1a" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#bgGlow)" />
+  <circle cx="1050" cy="120" r="180" fill="#06b6d4" opacity="0.07" filter="url(#glow)" />
+  <circle cx="150" cy="500" r="220" fill="#3b82f6" opacity="0.05" filter="url(#glow)" />
+
+  <!-- App Header / Navbar -->
+  <rect x="0" y="0" width="1200" height="96" fill="#0b121e" stroke="#1e293b" stroke-width="1" />
+  
+  <!-- Logo & Title -->
+  <g transform="translate(32, 16)">
+    <rect width="36" height="36" rx="8" fill="#082f49" stroke="#06b6d4" stroke-width="1.5" />
+    <text x="18" y="24" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">P3</text>
+    <text x="48" y="18" fill="#f1f5f9" font-size="15" font-weight="bold" font-family="sans-serif">Proxmark3 Web Studio</text>
+    <text x="48" y="32" fill="#06b6d4" font-size="11" font-family="sans-serif">por unfantasmaenelsistema.com · Iceman GUI</text>
+  </g>
+
+  <!-- Header Right Actions -->
+  <g transform="translate(860, 16)">
+    <rect x="0" y="2" width="145" height="30" rx="6" fill="#14532d" stroke="#22c55e" stroke-width="1" opacity="0.8" />
+    <circle cx="14" cy="17" r="4" fill="#4ade80" />
+    <text x="24" y="21" fill="#86efac" font-size="11" font-weight="bold">CONECTADO: RDV4</text>
+    
+    <rect x="155" y="2" width="150" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1" />
+    <text x="170" y="21" fill="#cbd5e1" font-size="11">LF: 29.4V · HF: 11.2V</text>
+  </g>
+
+  <!-- Row 1: Core Navigation Tabs -->
+  <line x1="0" y1="56" x2="1200" y2="56" stroke="#1e293b" stroke-width="1" />
+  <g transform="translate(32, 60)">
+    <text x="0" y="18" fill="#64748b" font-size="10" font-weight="bold">RFID CORE:</text>
+    
+    <!-- Tab items -->
+    <rect x="85" y="4" width="80" height="22" rx="4" fill="#1e293b" />
+    <text x="96" y="19" fill="#94a3b8" font-size="11">Hardware</text>
+
+    <rect x="172" y="4" width="100" height="22" rx="4" fill="#1e293b" />
+    <text x="182" y="19" fill="#94a3b8" font-size="11">Antena (Tune)</text>
+
+    <rect x="279" y="4" width="95" height="22" rx="4" fill="#1e293b" />
+    <text x="289" y="19" fill="#94a3b8" font-size="11">LF (125 kHz)</text>
+
+    <rect x="381" y="4" width="105" height="22" rx="4" fill="#1e293b" />
+    <text x="391" y="19" fill="#94a3b8" font-size="11">HF (13.56 MHz)</text>
+
+    <rect x="493" y="4" width="85" height="22" rx="4" fill="#1e293b" />
+    <text x="503" y="19" fill="#94a3b8" font-size="11">Visor Hex</text>
+
+    <rect x="585" y="4" width="105" height="22" rx="4" fill="#082f49" stroke="#06b6d4" stroke-width="1" />
+    <text x="597" y="19" fill="#38bdf8" font-size="11" font-weight="bold">Consola PM3</text>
+  </g>
+
+  <!-- Row 2: Advanced Tools & AI Copilot -->
+  <rect x="0" y="96" width="1200" height="34" fill="#070d17" stroke="#1e293b" stroke-width="1" />
+  <g transform="translate(32, 102)">
+    <text x="0" y="16" fill="#06b6d4" font-size="10" font-weight="bold">HERRAMIENTAS:</text>
+
+    <!-- Copiloto IA badge button -->
+    <rect x="100" y="1" width="125" height="22" rx="5" fill="#164e63" stroke="#22d3ee" stroke-width="1" />
+    <circle cx="112" cy="12" r="3" fill="#38bdf8" />
+    <text x="122" y="15" fill="#e0f2fe" font-size="11" font-weight="bold">🤖 Copiloto IA</text>
+    <rect x="195" y="4" width="22" height="13" rx="3" fill="#0369a1" />
+    <text x="199" y="14" fill="#bae6fd" font-size="8" font-weight="bold">AI</text>
+
+    <text x="240" y="15" fill="#cbd5e1" font-size="11">🛡️ Auditor Seguridad</text>
+    <text x="390" y="15" fill="#cbd5e1" font-size="11">🔄 Conversor Flipper</text>
+    <text x="530" y="15" fill="#cbd5e1" font-size="11">🛠️ Calc T5577</text>
+    <text x="635" y="15" fill="#cbd5e1" font-size="11">📈 Osciloscopio RF</text>
+    <text x="760" y="15" fill="#cbd5e1" font-size="11">🎓 Academia Cripto</text>
+    <text x="890" y="15" fill="#cbd5e1" font-size="11">📚 Misiones Guiadas</text>
+  </g>
+
+  <!-- Live Progress Bar Card -->
+  <g transform="translate(32, 146)">
+    <rect width="1136" height="52" rx="10" fill="#091322" stroke="#0284c7" stroke-width="1.2" />
+    <circle cx="24" cy="26" r="6" fill="#38bdf8" />
+    <text x="38" y="24" fill="#f8fafc" font-size="12" font-weight="bold" font-family="sans-serif">
+      Descifrando Sector 03 / 16 (Ataque Nested con PRNG exploit)...
+    </text>
+    <rect x="520" y="15" width="180" height="20" rx="4" fill="#042f2e" stroke="#14b8a6" stroke-width="1" />
+    <text x="530" y="29" fill="#5eead4" font-size="11">pm3 &gt; hf mf autopwn --1k</text>
+    <text x="1080" y="25" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="end">75%</text>
+
+    <!-- Progress Track -->
+    <rect x="20" y="38" width="1096" height="5" rx="2.5" fill="#030712" />
+    <rect x="20" y="38" width="822" height="5" rx="2.5" fill="url(#cyanGrad)" />
+  </g>
+
+  <!-- Interactive Terminal Window -->
+  <g transform="translate(32, 212)">
+    <!-- Terminal Outer Frame -->
+    <rect width="1136" height="430" rx="12" fill="#04070d" stroke="#1e293b" stroke-width="1.5" />
+    
+    <!-- Titlebar -->
+    <rect width="1136" height="34" rx="12" fill="#090f1a" />
+    <circle cx="20" cy="17" r="5" fill="#ef4444" />
+    <circle cx="36" cy="17" r="5" fill="#f59e0b" />
+    <circle cx="52" cy="17" r="5" fill="#10b981" />
+    <text x="76" y="21" fill="#64748b" font-size="11">proxmark3@client: [usb] pm3 (CLI Iceman v4.18967)</text>
+    <text x="1116" y="21" fill="#38bdf8" font-size="11" text-anchor="end">Modo: Hardware Real USB</text>
+
+    <!-- Console Text Stream -->
+    <g transform="translate(24, 60)" font-size="12" line-height="18">
+      <text y="0" fill="#38bdf8">[usb] pm3 --&gt; hw tune</text>
+      <text y="20" fill="#10b981">[+] LF antenna: 29.42 V @ 125.00 kHz (Optimal)</text>
+      <text y="40" fill="#10b981">[+] HF antenna: 11.24 V @ 13.56 MHz (Optimal)</text>
+      <text y="60" fill="#64748b">[=] Displaying LC resonance curves... OK</text>
+
+      <text y="95" fill="#38bdf8">[usb] pm3 --&gt; hf 14a info</text>
+      <text y="115" fill="#94a3b8">[+] UID:  A4 8F 2B 19</text>
+      <text y="135" fill="#94a3b8">[+] ATQA: 00 04  |  SAK: 08 [MIFARE Classic 1K]</text>
+      <text y="155" fill="#94a3b8">[+] Chip type: NXP Semiconductors (Crypto-1 PRNG)</text>
+
+      <text y="190" fill="#38bdf8">[usb] pm3 --&gt; hf mf autopwn --1k</text>
+      <text y="210" fill="#e2e8f0">[+] Auto-pwn starting on MIFARE Classic 1K...</text>
+      <text y="230" fill="#e2e8f0">[+] Loading default dictionary keys (52 standard keys)...</text>
+      <text y="250" fill="#10b981">[+] Sector 00 | Key A: A0A1A2A3A4A5 [found] | Key B: B0B1B2B3B4B5 [found]</text>
+      <text y="270" fill="#10b981">[+] Sector 01 | Key A: FFFFFFFFFFFF [found] | Key B: FFFFFFFFFFFF [found]</text>
+      <text y="290" fill="#10b981">[+] Sector 02 | Key A: D3F7D3F7D3F7 [found] | Key B: FFFFFFFFFFFF [found]</text>
+      <text y="310" fill="#f59e0b">[+] Nested attack on Sector 03 (analyzing nonces Nt: 0x48f2b192)...</text>
+    </g>
+
+    <!-- Terminal Command Input Bar -->
+    <g transform="translate(16, 385)">
+      <rect width="1104" height="34" rx="6" fill="#0b1322" stroke="#0369a1" stroke-width="1" />
+      <text x="14" y="22" fill="#38bdf8" font-weight="bold">[usb] pm3 --&gt;</text>
+      <text x="125" y="22" fill="#f1f5f9">hf mf autopwn --1k</text>
+      <rect x="272" y="10" width="8" height="15" fill="#38bdf8" opacity="0.8" />
+      <text x="1086" y="22" fill="#64748b" text-anchor="end">Enter ↵</text>
+    </g>
+  </g>
+</svg>

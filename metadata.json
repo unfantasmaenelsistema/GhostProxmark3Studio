@@ -1,0 +1,6 @@
+{
+  "name": "Proxmark3 Web Studio",
+  "description": "Herramienta gráfica profesional para Proxmark3 (Windows y Linux): control por Web Serial, análisis LF/HF, sintonizador de antena, visor hex y automatización de comandos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" style="background:#070b13; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;">
+  <defs>
+    <linearGradient id="academyBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#091222" />
+      <stop offset="100%" stop-color="#040810" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="675" fill="url(#academyBg)" />
+
+  <!-- App Header Compact -->
+  <rect x="0" y="0" width="1200" height="54" fill="#0b121e" stroke="#1e293b" stroke-width="1" />
+  <g transform="translate(32, 12)">
+    <rect width="30" height="30" rx="6" fill="#082f49" stroke="#06b6d4" stroke-width="1.5" />
+    <text x="15" y="20" fill="#38bdf8" font-size="12" font-weight="bold" text-anchor="middle">P3</text>
+    <text x="40" y="16" fill="#f1f5f9" font-size="14" font-weight="bold" font-family="sans-serif">Proxmark3 Web Studio</text>
+    <text x="40" y="28" fill="#64748b" font-size="10" font-family="sans-serif">Módulo: Academia Criptográfica & Calculadora Wiegand 26-bit</text>
+  </g>
+
+  <!-- Title Banner -->
+  <g transform="translate(32, 70)">
+    <rect width="1136" height="85" rx="14" fill="#0b1424" stroke="#1e293b" stroke-width="1.5" />
+    <g transform="translate(24, 20)">
+      <rect width="45" height="45" rx="10" fill="#082f49" stroke="#38bdf8" stroke-width="1" />
+      <text x="22" y="30" fill="#38bdf8" font-size="20" text-anchor="middle">🎓</text>
+      <text x="60" y="22" fill="#f8fafc" font-size="16" font-weight="bold" font-family="sans-serif">
+        Academia Criptográfica & Fundamentos RFID
+      </text>
+      <text x="60" y="40" fill="#94a3b8" font-size="11" font-family="sans-serif">
+        Aprende la matemática y los fallos de implementación explotados por Proxmark3 (PRNG Flaws, Paridad Crypto-1, Wiegand).
+      </text>
+    </g>
+
+    <!-- Sub tabs -->
+    <g transform="translate(740, 26)">
+      <rect x="0" y="0" width="115" height="30" rx="6" fill="#0369a1" />
+      <text x="57" y="19" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">Wiegand 26-bit</text>
+
+      <rect x="125" y="0" width="110" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="180" y="19" fill="#94a3b8" font-size="11" text-anchor="middle">Ataque Nested</text>
+
+      <rect x="245" y="0" width="115" height="30" rx="6" fill="#0f172a" stroke="#334155" stroke-width="1" />
+      <text x="302" y="19" fill="#94a3b8" font-size="11" text-anchor="middle">Ataque Darkside</text>
+    </g>
+  </g>
+
+  <!-- Interactive Wiegand 26-bit Calculator Card -->
+  <g transform="translate(32, 172)">
+    <rect width="1136" height="475" rx="14" fill="#060c18" stroke="#1e293b" stroke-width="1.5" />
+    
+    <!-- Card Subheader -->
+    <g transform="translate(24, 24)">
+      <text x="0" y="0" fill="#10b981" font-size="14" font-weight="bold" font-family="sans-serif">
+        Estructura y Calculadora Interactiva de Formato Wiegand 26-bit (H10301)
+      </text>
+      <text x="0" y="18" fill="#64748b" font-size="11" font-family="sans-serif">
+        El formato de credencial más común en el mundo (HID Prox II, Indala, EM4100).
+      </text>
+    </g>
+
+    <!-- Inputs -->
+    <g transform="translate(24, 75)">
+      <!-- Facility Code Input -->
+      <rect x="0" y="0" width="535" height="74" rx="8" fill="#0b1322" stroke="#1e293b" stroke-width="1" />
+      <text x="16" y="24" fill="#38bdf8" font-size="11" font-weight="bold">Facility Code (Código de Instalación): 104</text>
+      <text x="430" y="24" fill="#64748b" font-size="10">8 bits (0-255)</text>
+      <rect x="16" y="34" width="503" height="28" rx="4" fill="#040812" stroke="#0284c7" stroke-width="1" />
+      <text x="28" y="52" fill="#e0f2fe" font-size="12">104  ·  Binario: 01101000</text>
+
+      <!-- Card Number Input -->
+      <rect x="555" y="0" width="535" height="74" rx="8" fill="#0b1322" stroke="#1e293b" stroke-width="1" />
+      <text x="571" y="24" fill="#34d399" font-size="11" font-weight="bold">Card Number (Número de Tarjeta): 31337</text>
+      <text x="960" y="24" fill="#64748b" font-size="10">16 bits (0-65535)</text>
+      <rect x="571" y="34" width="503" height="28" rx="4" fill="#040812" stroke="#059669" stroke-width="1" />
+      <text x="583" y="52" fill="#d1fae5" font-size="12">31337  ·  Binario: 0111101001101001</text>
+    </g>
+
+    <!-- Visual 26-bit Map -->
+    <g transform="translate(24, 180)">
+      <text x="0" y="0" fill="#94a3b8" font-size="11" font-weight="bold">MAPA BINARIO DE 26 BITS CALCULADO:</text>
+
+      <rect x="0" y="14" width="1090" height="90" rx="8" fill="#040812" stroke="#1e293b" stroke-width="1" />
+
+      <!-- Bit 1: Even Parity -->
+      <g transform="translate(18, 30)">
+        <rect width="36" height="42" rx="4" fill="#581c87" stroke="#a855f7" stroke-width="1" />
+        <text x="18" y="24" fill="#f3e8ff" font-size="14" font-weight="bold" text-anchor="middle">0</text>
+        <text x="18" y="36" fill="#d8b4fe" font-size="8" text-anchor="middle">EP</text>
+      </g>
+
+      <!-- Bits 2-9: Facility Code (8 bits) -->
+      <g transform="translate(62, 30)">
+        <rect width="320" height="42" rx="4" fill="#082f49" stroke="#0284c7" stroke-width="1" />
+        <text x="160" y="24" fill="#e0f2fe" font-size="13" font-weight="bold" text-anchor="middle">0  1  1  0  1  0  0  0</text>
+        <text x="160" y="36" fill="#7dd3fc" font-size="8" text-anchor="middle">FACILITY CODE (FC = 104)</text>
+      </g>
+
+      <!-- Bits 10-25: Card Number (16 bits) -->
+      <g transform="translate(390, 30)">
+        <rect width="630" height="42" rx="4" fill="#064e3b" stroke="#059669" stroke-width="1" />
+        <text x="315" y="24" fill="#d1fae5" font-size="13" font-weight="bold" text-anchor="middle">0  1  1  1  1  0  1  0  0  1  1  0  1  0  0  1</text>
+        <text x="315" y="36" fill="#6ee7b7" font-size="8" text-anchor="middle">CARD NUMBER (CN = 31337)</text>
+      </g>
+
+      <!-- Bit 26: Odd Parity -->
+      <g transform="translate(1028, 30)">
+        <rect width="36" height="42" rx="4" fill="#713f12" stroke="#eab308" stroke-width="1" />
+        <text x="18" y="24" fill="#fef9c3" font-size="14" font-weight="bold" text-anchor="middle">1</text>
+        <text x="18" y="36" fill="#fde047" font-size="8" text-anchor="middle">OP</text>
+      </g>
+
+      <text x="18" y="90" fill="#64748b" font-size="10">Hexadecimal: 2006ec1337 · Bit EP (Paridad Par bits 1-13) · Bit OP (Paridad Impar bits 14-26)</text>
+    </g>
+
+    <!-- Proxmark3 Auto-Generated Clone Command Box -->
+    <g transform="translate(24, 320)">
+      <rect width="1090" height="85" rx="8" fill="#030712" stroke="#0284c7" stroke-width="1.2" />
+      <text x="20" y="26" fill="#38bdf8" font-size="11" font-weight="bold">
+        COMANDO OFICIAL PROXMARK3 PARA CLONAR EN CHIP T5577:
+      </text>
+      <text x="20" y="55" fill="#f8fafc" font-size="15" font-weight="bold">
+        lf hid clone -w H10301 --fc 104 --cn 31337
+      </text>
+      
+      <!-- Copy button -->
+      <rect x="910" y="25" width="160" height="34" rx="6" fill="#0284c7" />
+      <text x="990" y="47" fill="#ffffff" font-size="12" font-weight="bold" text-anchor="middle">Copiar Comando</text>
+    </g>
+  </g>
+</svg>
