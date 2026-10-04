@@ -1,16 +1,40 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, NextFunction } from 'express';
 import { createServer as createViteServer } from 'vite';
 import { GoogleGenAI } from '@google/genai';
 import path from 'path';
 import dotenv from 'dotenv';
+import rateLimit from 'express-rate-limit';
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = Number(process.env.PORT) || 3000;
+const HOST = process.env.HOST || '127.0.0.1';
+const MAX_BODY_SIZE = process.env.MAX_BODY_SIZE || '10mb';
 const isProduction = process.env.NODE_ENV === 'production';
 
-app.use(express.json({ limit: '10mb' }));
+if (HOST === '0.0.0.0') {
+  console.warn('[Proxmark3 Web Studio] AVISO: el servidor escucha en 0.0.0.0 (todas las interfaces de red).');
+}
+
+app.use(express.json({ limit: MAX_BODY_SIZE }));
+app.use((err: any, _req: Request, res: Response, next: NextFunction) => {
+  if (err?.type === 'entity.too.large') {
+    return res.status(413).json({ error: 'Cuerpo de la petición demasiado grande.' });
+  }
+  if (err?.type === 'entity.parse.failed') {
+    return res.status(400).json({ error: 'JSON de la petición inválido.' });
+  }
+  return next(err);
+});
+
+const aiRateLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  limit: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Demasiadas solicitudes al asistente IA. Inténtalo de nuevo en un minuto.' },
+});
 
 // Initialize Google GenAI
 const ai = process.env.GEMINI_API_KEY ? new GoogleGenAI() : null;
@@ -140,11 +164,17 @@ Para tu consulta sobre **"${prompt}"**, los pasos estándar en la CLI de Iceman 
 }
 
 // AI Assistant endpoint
-app.post('/api/ai/assistant', async (req: Request, res: Response) => {
+const MAX_PROMPT_LENGTH = 2000;
+
+app.post('/api/ai/assistant', aiRateLimiter, async (req: Request, res: Response) => {
   const { prompt, cardContext, recentCommands, deviceStatus } = req.body;
 
-  if (!prompt) {
+  if (!prompt || typeof prompt !== 'string' || !prompt.trim()) {
     return res.status(400).json({ error: 'El prompt es requerido.' });
+  }
+
+  if (prompt.length > MAX_PROMPT_LENGTH) {
+    return res.status(400).json({ error: `El prompt no puede superar los ${MAX_PROMPT_LENGTH} caracteres.` });
   }
 
   const systemInstruction = `Eres el "Copiloto IA de Proxmark3 Web Studio" de unfantasmaenelsistema.com, un experto de élite en ciberseguridad física, análisis de señales RFID/NFC, ingeniería inversa de hardware y el repositorio oficial de Iceman para Proxmark3.
@@ -208,15 +238,15 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.resolve(__dirname, 'dist');
+    const distPath = path.resolve(import.meta.dirname, 'dist');
     app.use(express.static(distPath));
     app.get('*', (_req: Request, res: Response) => {
       res.sendFile(path.join(distPath, 'index.html'));
     });
   }
 
-  app.listen(PORT, () => {
-    console.log(`[Proxmark3 Web Studio] Servidor activo en http://localhost:${PORT}`);
+  app.listen(PORT, HOST, () => {
+    console.log(`[Proxmark3 Web Studio] Servidor activo en http://${HOST}:${PORT}`);
   });
 }
 
