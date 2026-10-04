@@ -96,8 +96,8 @@ Laboratorio formativo con desglose matemático de los ataques criptográficos **
 
 ### 1. Clonar el Repositorio
 ```bash
-git clone https://github.com/tu-usuario/proxmark3-web-studio.git
-cd proxmark3-web-studio
+git clone https://github.com/unfantasmaenelsistema/GhostProxmark3Studio.git
+cd GhostProxmark3Studio
 ```
 
 ### 2. Instalar Dependencias
@@ -113,6 +113,8 @@ cp .env.example .env
 Si deseas activar el Copiloto IA con Gemini 3.8 Flash, añade tu clave API:
 ```env
 GEMINI_API_KEY="tu_api_key_de_google_ai_studio"
+PORT=3000
+HOST=127.0.0.1
 ```
 *(Si no dispones de API Key, el Copiloto IA funcionará en modo experto offline con recomendaciones preprogramadas sobre la wiki de Iceman).*
 
@@ -166,6 +168,21 @@ npm start
 
 ---
 
+## 🔒 Seguridad
+
+- El servidor escucha por defecto en `127.0.0.1` (solo tu equipo). Cambia
+  `HOST=0.0.0.0` en `.env` únicamente si necesitas acceder desde otro
+  dispositivo de tu red, y hazlo con conocimiento de causa: tu clave de
+  Gemini vive en el backend, no en el navegador, pero cualquiera que llegue
+  al puerto podría usar la app (y tu cuota de la API) como si fuera suya.
+- La ruta que llama a Gemini (`/api/ai/assistant`) aplica un límite básico
+  de peticiones por IP (20/min).
+- La comunicación con el hardware Proxmark3 se realiza directamente desde
+  tu navegador mediante la Web Serial API; el servidor backend nunca
+  interviene en esa comunicación ni tiene acceso al puerto serie.
+
+---
+
 ## ⚖️ Aviso Legal & Uso Ético
 
 Esta herramienta ha sido desarrollada con fines **estrictamente educativos, de investigación y de auditoría de seguridad física autorizada** (Hacking Ético / Red Teaming). El autor y [unfantasmaenelsistema.com](https://www.unfantasmaenelsistema.com/) no se hacen responsables del uso indebido o ilegal de los conocimientos y funcionalidades aquí provistos. Utiliza esta herramienta únicamente sobre sistemas, tarjetas y credenciales sobre las que tengas autorización explícita por escrito.
@@ -176,3 +193,9 @@ Esta herramienta ha sido desarrollada con fines **estrictamente educativos, de i
 
 - Proyecto oficial [Proxmark3 Iceman Fork](https://github.com/RfidResearchGroup/proxmark3).
 - Comunidad de investigación y divulgación de [Un Fantasma En El Sistema](https://www.unfantasmaenelsistema.com/).
+
+---
+
+## 📄 Licencia
+
+Distribuido bajo licencia [MIT](LICENSE).
