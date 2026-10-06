@@ -14,24 +14,31 @@
 
 ## 📸 Capturas de la Interfaz
 
-### 1. Panel de Control & Consola Interactiva con Barra de Progreso en Vivo
-Interfaz de operaciones con barra de navegación en dos filas categorizadas (`RFID Core` y `Herramientas`), telemetría de voltajes de antena en tiempo real y terminal interactivo con indicador de avance durante ataques como `hf mf autopwn`.
+### 1. Panel de Control: Telemetría de Antena & Mapa de Calor de Señal RF
+Interfaz de operaciones con barra de navegación en dos filas categorizadas (`RFID Core` y `Herramientas`), telemetría de voltajes de antena en tiempo real y visualización D3.js del mapa de calor de la señal RF capturada.
 
-![Panel de Control y Consola Interactiva](public/screenshots/dashboard_preview.svg)
+![Panel de Control](public/screenshots/01-dashboard.png)
 
 ---
 
-### 2. Auditor Forense de Seguridad & Scorecard de Credenciales
+### 2. Consola Interactiva con Barra de Progreso en Vivo
+Terminal interactivo con indicador de avance en tiempo real durante ataques multi-fase como `hf mf autopwn`, mostrando el log de descifrado sector a sector.
+
+![Consola Interactiva](public/screenshots/02-terminal.png)
+
+---
+
+### 3. Auditor Forense de Seguridad & Scorecard de Credenciales
 Evaluación heurística de riesgo (Clases A – F) sobre el volcado en memoria, con detección automática de contraseñas de fábrica (`FFFFFFFFFFFF`, `A0A1A2A3A4A5`), análisis de puertas traseras de tarjetas mágicas chinas y generador de informes descargables en Markdown (`.md`).
 
-![Auditor Forense de Credenciales](public/screenshots/security_auditor.svg)
+![Auditor Forense de Credenciales](public/screenshots/03-security-auditor.png)
 
 ---
 
-### 3. Academia Criptográfica & Calculadora Wiegand 26-bit
-Laboratorio formativo con desglose matemático de los ataques criptográficos **Nested** (explotación de PRNG débil en Crypto-1) y **Darkside** (oráculo de error de paridad NACK), junto con un mapa visual binario de 26 bits para credenciales de acceso HID Prox II / H10301.
+### 4. Academia Criptográfica & Calculadora Wiegand 26-bit
+Laboratorio formativo con desglose matemático de los ataques criptográficos **Nested** (explotación de PRNG débil en Crypto-1) y **Darkside** (oráculo de error de paridad NACK).
 
-![Academia Criptográfica y Calculadora Wiegand](public/screenshots/crypto_academy.svg)
+![Academia Criptográfica](public/screenshots/04-crypto-academy.png)
 
 ---
 
@@ -96,8 +103,8 @@ Laboratorio formativo con desglose matemático de los ataques criptográficos **
 
 ### 1. Clonar el Repositorio
 ```bash
-git clone https://github.com/tu-usuario/proxmark3-web-studio.git
-cd proxmark3-web-studio
+git clone https://github.com/unfantasmaenelsistema/GhostProxmark3Studio.git
+cd GhostProxmark3Studio
 ```
 
 ### 2. Instalar Dependencias
@@ -113,6 +120,8 @@ cp .env.example .env
 Si deseas activar el Copiloto IA con Gemini 3.8 Flash, añade tu clave API:
 ```env
 GEMINI_API_KEY="tu_api_key_de_google_ai_studio"
+PORT=3000
+HOST=127.0.0.1
 ```
 *(Si no dispones de API Key, el Copiloto IA funcionará en modo experto offline con recomendaciones preprogramadas sobre la wiki de Iceman).*
 
@@ -134,10 +143,11 @@ npm start
 
 ```text
 ├── public/
-│   ├── screenshots/              # Capturas y diagramas de la interfaz
-│   │   ├── dashboard_preview.svg
-│   │   ├── security_auditor.svg
-│   │   └── crypto_academy.svg
+│   ├── screenshots/              # Capturas reales de la interfaz
+│   │   ├── 01-dashboard.png
+│   │   ├── 02-terminal.png
+│   │   ├── 03-security-auditor.png
+│   │   └── 04-crypto-academy.png
 │   └── icono.png                 # Logotipo oficial
 ├── src/
 │   ├── components/               # Componentes modulares
@@ -166,6 +176,21 @@ npm start
 
 ---
 
+## 🔒 Seguridad
+
+- El servidor escucha por defecto en `127.0.0.1` (solo tu equipo). Cambia
+  `HOST=0.0.0.0` en `.env` únicamente si necesitas acceder desde otro
+  dispositivo de tu red, y hazlo con conocimiento de causa: tu clave de
+  Gemini vive en el backend, no en el navegador, pero cualquiera que llegue
+  al puerto podría usar la app (y tu cuota de la API) como si fuera suya.
+- La ruta que llama a Gemini (`/api/ai/assistant`) aplica un límite básico
+  de peticiones por IP (20/min).
+- La comunicación con el hardware Proxmark3 se realiza directamente desde
+  tu navegador mediante la Web Serial API; el servidor backend nunca
+  interviene en esa comunicación ni tiene acceso al puerto serie.
+
+---
+
 ## ⚖️ Aviso Legal & Uso Ético
 
 Esta herramienta ha sido desarrollada con fines **estrictamente educativos, de investigación y de auditoría de seguridad física autorizada** (Hacking Ético / Red Teaming). El autor y [unfantasmaenelsistema.com](https://www.unfantasmaenelsistema.com/) no se hacen responsables del uso indebido o ilegal de los conocimientos y funcionalidades aquí provistos. Utiliza esta herramienta únicamente sobre sistemas, tarjetas y credenciales sobre las que tengas autorización explícita por escrito.
@@ -176,3 +201,9 @@ Esta herramienta ha sido desarrollada con fines **estrictamente educativos, de i
 
 - Proyecto oficial [Proxmark3 Iceman Fork](https://github.com/RfidResearchGroup/proxmark3).
 - Comunidad de investigación y divulgación de [Un Fantasma En El Sistema](https://www.unfantasmaenelsistema.com/).
+
+---
+
+## 📄 Licencia
+
+Distribuido bajo licencia [MIT](LICENSE).
