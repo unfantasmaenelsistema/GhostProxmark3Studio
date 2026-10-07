@@ -17,6 +17,7 @@ import {
   Lightbulb
 } from 'lucide-react';
 import { CardDump, DeviceInfo } from '../types/proxmark';
+import { generateDomainExpertReply } from '../services/offlineExpertEngine';
 
 interface AiSecurityCopilotProps {
   cardDump: CardDump;
@@ -91,26 +92,27 @@ export const AiSecurityCopilot: React.FC<AiSecurityCopilotProps> = ({
     setInputQuestion('');
     setIsLoading(true);
 
+    const cardContext = {
+      uid: cardDump.uid,
+      type: cardDump.type,
+      atqa: cardDump.atqa,
+      sak: cardDump.sak,
+      sectorsCount: cardDump.sectors.length,
+    };
+    const deviceStatus = {
+      lfVoltage: deviceInfo.lfVoltage,
+      hfVoltage: deviceInfo.hfVoltage,
+      version: deviceInfo.version,
+    };
+
     try {
       const res = await fetch('/api/ai/assistant', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          prompt: query,
-          cardContext: {
-            uid: cardDump.uid,
-            type: cardDump.type,
-            atqa: cardDump.atqa,
-            sak: cardDump.sak,
-            sectorsCount: cardDump.sectors.length,
-          },
-          deviceStatus: {
-            lfVoltage: deviceInfo.lfVoltage,
-            hfVoltage: deviceInfo.hfVoltage,
-            version: deviceInfo.version,
-          },
-        }),
+        body: JSON.stringify({ prompt: query, cardContext, deviceStatus }),
       });
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
       const data = await res.json();
       const replyText = data.reply || 'No se recibió respuesta del asistente.';
@@ -126,13 +128,19 @@ export const AiSecurityCopilot: React.FC<AiSecurityCopilotProps> = ({
 
       setMessages((prev) => [...prev, aiMsg]);
     } catch (err: any) {
+      // No backend reachable (e.g. static deployment without a Node server):
+      // fall back to the offline rule-based expert engine instead of erroring out.
+      const replyText = generateDomainExpertReply(query, cardContext, deviceStatus);
+      const suggestedCmds = extractCommands(replyText);
+
       setMessages((prev) => [
         ...prev,
         {
-          id: `err-${Date.now()}`,
+          id: `ai-offline-${Date.now()}`,
           sender: 'assistant',
-          text: `[-] Error al consultar al asistente IA: ${err.message || 'Error de conexión'}. Verifica que el servidor esté activo.`,
+          text: `_[Modo experto offline — sin conexión al servidor de IA]_\n\n${replyText}`,
           timestamp: new Date().toTimeString().slice(0, 5),
+          suggestedCommands: suggestedCmds.length > 0 ? suggestedCmds : undefined,
         },
       ]);
     } finally {
