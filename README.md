@@ -10,6 +10,12 @@
 
 > **Proxmark3 Web Studio** es una suite gráfica profesional y educativa diseñada para auditorías de seguridad física, análisis de señales RFID/NFC y aprendizaje de hardware hacking. Desarrollada por [unfantasmaenelsistema.com](https://www.unfantasmaenelsistema.com/) sobre la CLI oficial de Iceman.
 
+### 🌐 [Demo en vivo: unfantasmaenelsistema.github.io/GhostProxmark3Studio](https://unfantasmaenelsistema.github.io/GhostProxmark3Studio/)
+
+> La demo pública corre 100% en el navegador (GitHub Pages, sin backend). La conexión real por Web Serial API, el modo simulación y todas las herramientas funcionan igual que en local — el único matiz es que el **Copiloto IA** responde siempre en modo experto offline (reglas preprogramadas), ya que no hay servidor para llamar a Gemini con la API key de forma segura. Para IA en vivo, despliega tu propia instancia con backend (ver instalación abajo).
+
+Herramienta hermana: **[Curso RFID & NFC](https://unfantasmaenelsistema.github.io/Curso-RFID-NFC/)**, el temario y laboratorio virtual de ciberseguridad RFID/NFC — practica aquí en modo simulación antes de auditar con tu Proxmark3 real en esta app.
+
 ---
 
 ## 📸 Capturas de la Interfaz
@@ -54,6 +60,7 @@ Laboratorio formativo con desglose matemático de los ataques criptográficos **
 - **Orientación Paso a Paso:** Si no sabes qué comando ejecutar, la IA analiza la tarjeta que tienes en la antena y te indica la secuencia exacta en la CLI de Iceman.
 - **Botones de Ejecución Directa:** Cada comando sugerido por la IA incluye botones para copiar o lanzar la ejecución inmediata en la consola.
 - **Diagnóstico de Antena:** Consejos interactivos para resolver caídas de voltaje o problemas de desacoplamiento de bobina.
+- **Fallback Offline Automático:** la API key de Gemini solo se usa en el servidor (`server.ts`), nunca en el cliente. Si no hay backend disponible (por ejemplo en la demo estática de GitHub Pages) o la llamada a Gemini falla/tarda, el copiloto cae automáticamente en un motor de reglas con las mismas respuestas expertas, sin romperse ni exponer ninguna clave.
 
 ### 🛡️ 3. Auditor de Seguridad de Credenciales
 - Puntuación de seguridad de 0 a 100 con nivel de riesgo (Crítico, Alto, Medio, Seguro).
@@ -201,6 +208,7 @@ Esta herramienta ha sido desarrollada con fines **estrictamente educativos, de i
 
 - Proyecto oficial [Proxmark3 Iceman Fork](https://github.com/RfidResearchGroup/proxmark3).
 - Comunidad de investigación y divulgación de [Un Fantasma En El Sistema](https://www.unfantasmaenelsistema.com/).
+- Herramienta hermana: [Curso RFID & NFC](https://github.com/unfantasmaenelsistema/Curso-RFID-NFC) — temario y laboratorio virtual del mismo ecosistema.
 
 ---
 
